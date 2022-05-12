@@ -6,7 +6,14 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v1.4.4
+      - name: verify repository
+        uses: actions/checkout@v3
+
+      - name: install node
+        uses: actions/setup-node@v1.4.4
+
+      - name: install dependencies
+        run: npm install
+
       - name: run eslint
         run: npm run lint
