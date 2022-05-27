@@ -1,8 +1,15 @@
-interface User {
-  id?: number,
-  name: string,
-  email: string,
+export interface IUser {
+  id?: number;
+  name: string;
+  email: string;
+}
+
+export interface IUserWithCredentials extends IUser {
   password: string,
 }
 
-export default User;
+export interface IUserEditParams {
+  name?: string;
+  email?: string;
+  password?: string;
+}

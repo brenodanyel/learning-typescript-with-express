@@ -14,6 +14,7 @@ router.route('/')
 
 router.route('/:id')
   .delete(controller.deleteUser)
+  .put(controller.editUser)
   .get(controller.getUser);
 
 export default router;

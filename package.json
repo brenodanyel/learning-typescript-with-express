@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node out/index.js",
-    "dev": "ts-node-dev src/index",
+    "dev": "ts-node-dev src/index --transpileOnly",
     "lint": "eslint **/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.14.0",
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "eslint-import-resolver-typescript": "^2.7.1",
     "express": "^4.18.1",
