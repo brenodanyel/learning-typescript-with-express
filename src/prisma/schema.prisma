@@ -1,0 +1,48 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "mysql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String
+  password String
+
+  @@map("users")
+}
+
+model Post {
+  id              Int      @id @default(autoincrement())
+  title           String
+  author          String
+  Category        String
+  publicationDate DateTime @default(now())
+
+  @@map("posts")
+}
+
+model Product {
+  id                 Int       @id @default(autoincrement())
+  name               String
+  brand              String
+  price              Int
+  manufacturing_date DateTime  @default(now())
+  expiration_date    DateTime?
+
+  @@map("products")
+}
+
+model Restaurant {
+  id           Int      @id @default(autoincrement())
+  name         String
+  category     String
+  opening_time DateTime
+  closing_time DateTime
+
+  @@map("restaurants")
+}

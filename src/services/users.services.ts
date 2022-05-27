@@ -1,17 +1,15 @@
-import Model from '../models/users.model';
 import User from '../interfaces/users.interfaces';
 import generateError from '../helpers/generateError';
+import prisma from '../prisma/client';
 
 class Service {
-  private model = new Model();
-
   public getUsers = async (): Promise<User[]> => {
-    const users = await this.model.getUsers();
+    const users = await prisma.user.findMany();
     return users;
   };
 
   public getUser = async (id: number): Promise<User> => {
-    const user = await this.model.getUser(id);
+    const user = await prisma.user.findFirst({ where: { id } });
 
     if (!user) {
       throw generateError({ status: 404, customMessage: 'Usuário não encontrado' });
@@ -21,13 +19,13 @@ class Service {
   };
 
   public createUser = async (params: User): Promise<User> => {
-    const id = await this.model.createUser(params);
-    const user = await this.model.getUser(id);
+    const user = await prisma.user.create({ data: params });
     return user;
   };
 
   public deleteUser = async (id: number): Promise<boolean> => {
-    await this.model.deleteUser(id);
+    await this.getUser(id);
+    await prisma.user.delete({ where: { id } });
     return true;
   };
 }
